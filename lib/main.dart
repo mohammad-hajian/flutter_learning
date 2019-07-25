@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ui/weight-on-planet_4.dart';
 import 'package:flutter_app/ui/login_3.dart';
 import 'ui/make-it-rain_2.dart';
 import 'ui/home_1.dart';
@@ -22,7 +23,7 @@ import 'ui/home_1.dart';
 //    home: new Home(title: title,),
 //  ));
 //}
-
+//
 //void main(){
 //  runApp(
 //    new MaterialApp(
@@ -33,12 +34,22 @@ import 'ui/home_1.dart';
 //}
 
 
+//void main(){
+//      final appTitle = "login";
+//  runApp(
+//    new MaterialApp(
+//      title: appTitle,
+//      home: Login(appTitle),
+//    )
+//  );
+//}
+
 void main(){
-      final appTitle = "login";
+      final appTitle = "WeightOnPlanet";
   runApp(
     new MaterialApp(
       title: appTitle,
-      home: Login(appTitle),
+      home: WeightOnPlanet(appTitle),
     )
   );
 }

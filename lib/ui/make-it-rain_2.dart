@@ -7,10 +7,11 @@ class MakeItRain extends StatefulWidget {
 
 class MakeItRainState extends State<MakeItRain> {
   int _MoneyCounter = 0;
-  void _rainMoney(){
+  void _rainMoney(int a){
     //برای زمانی که گوشی نیاز به ریلود دارد
     setState(() {
-    _MoneyCounter = _MoneyCounter + 100;
+//    _MoneyCounter = _MoneyCounter + 100;
+      _MoneyCounter = _MoneyCounter + a;
     });
   }
   @override
@@ -44,7 +45,7 @@ class MakeItRainState extends State<MakeItRain> {
                       color: Colors.lightGreen,
                         textColor: Colors.white70,
                         padding: EdgeInsets.all(15),
-                        onPressed:() => _rainMoney(),
+                        onPressed:() => _rainMoney(100),
                         child: new Text(
                             "Let It Rain",
                           style: TextStyle(
