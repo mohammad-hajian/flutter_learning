@@ -61,9 +61,9 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
                 if(c.isEmpty){
                   return "خالی نباشد";
                 }else{
-                  _data.name = c;
+                 return _data.name = c;
                 }
-              },
+              }
             ),
           ),
           Padding(
@@ -80,7 +80,7 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
               validator: (c){
                 if(c.isEmpty){
                   return "خالی نباشد";
-                }else _data.password = c;
+                }else return _data.password = c;
               },
             ),
           ),

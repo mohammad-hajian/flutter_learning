@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ui/bmi_5.dart';
 import 'ui/weight-on-planet_4.dart';
 import 'package:flutter_app/ui/login_3.dart';
 import 'ui/make-it-rain_2.dart';
@@ -44,12 +45,24 @@ import 'ui/home_1.dart';
 //  );
 //}
 
+//void main(){
+//      final appTitle = "WeightOnPlanet";
+//  runApp(
+//    new MaterialApp(
+//      title: appTitle,
+//      home: WeightOnPlanet(appTitle),
+//    )
+//  );
+//}
+
 void main(){
-      final appTitle = "WeightOnPlanet";
+  final title = "BMI";
   runApp(
     new MaterialApp(
-      title: appTitle,
-      home: WeightOnPlanet(appTitle),
+      title: title,
+      home: new BMI(title),
     )
   );
+
+
 }
