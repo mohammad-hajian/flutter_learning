@@ -17,9 +17,8 @@ class Login extends StatelessWidget {
   }
 }
 
-
 //Data Class
-class _LoginData{
+class _LoginData {
   String name = "";
   String password = "";
 }
@@ -36,12 +35,11 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: new Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: new ListView/*Column*/(
         children: <Widget>[
           Center(
             child: Image.asset(
-                "./images/face.png",
+              "./images/face.png",
               width: 90,
               height: 90,
               color: Colors.pink,
@@ -50,37 +48,32 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: new TextFormField(
-              decoration: InputDecoration(
-                labelText: "Name",
-                border: OutlineInputBorder(
-                  gapPadding: 5,
-                  borderRadius: BorderRadius.circular(10)
-                )
-              ),
-              validator: (c){
-                if(c.isEmpty){
-                  return "خالی نباشد";
-                }else{
-                 return _data.name = c;
-                }
-              }
-            ),
+                decoration: InputDecoration(
+                    labelText: "Name",
+                    border: OutlineInputBorder(
+                        gapPadding: 5,
+                        borderRadius: BorderRadius.circular(10))),
+                validator: (c) {
+                  if (c.isEmpty) {
+                    return "خالی نباشد";
+                  } else {
+                    return _data.name = c;
+                  }
+                }),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: new TextFormField(
               obscureText: true,
               decoration: new InputDecoration(
-                labelText: "Password",
+                  labelText: "Password",
                   border: OutlineInputBorder(
-                      gapPadding: 5,
-                      borderRadius: BorderRadius.circular(10)
-                  )
-              ),
-              validator: (c){
-                if(c.isEmpty){
+                      gapPadding: 5, borderRadius: BorderRadius.circular(10))),
+              validator: (c) {
+                if (c.isEmpty) {
                   return "خالی نباشد";
-                }else return _data.password = c;
+                } else
+                  return _data.password = c;
               },
             ),
           ),
@@ -93,12 +86,14 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
-                    onPressed: (){
+                    onPressed: () {
                       setState(() {
                         _data.name = _data.name;
                       });
-                      if(_formKey.currentState.validate()){
-                        Scaffold.of(context).showSnackBar(SnackBar(content:Text("name: ${_data.name} & password: ${_data.password}")));
+                      if (_formKey.currentState.validate()) {
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                                "name: ${_data.name} & password: ${_data.password}")));
                       }
                     },
                     child: Text("Submit"),
@@ -107,12 +102,12 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: RaisedButton(
-                    onPressed: (){
-                        _formKey.currentState.reset();
+                    onPressed: () {
+                      _formKey.currentState.reset();
                       setState(() {
                         _data.name = "";
                       });
-                    } ,
+                    },
                     child: Text("Clear"),
                   ),
                 ),
@@ -122,18 +117,14 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
-                child:_data.name.isEmpty ? Text("") : new Text(
-                    "hello ${_data.name}",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold
-                    )
-                )
-            ),
+                child: _data.name.isEmpty
+                    ? Text("")
+                    : new Text("hello ${_data.name}",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold))),
           ),
         ],
       ),
     );
   }
 }
-
