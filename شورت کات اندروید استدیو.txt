@@ -11,7 +11,7 @@ cntrl+q    quickly doc
 cntrl+B or Cntrl+click rooye matn        navigate to declaration
 shift+F6     rename item & reference
 cntrl+O      override of base class
-cntrol+I      implementof interface
+cntrol+I      implement of interface
 middleMouse on tab or shift+click on tab         close tab
 typing on tree        quick search
 cntrl+alt+t       surround with
@@ -21,9 +21,9 @@ cntrl+shif+backSpace         brings you to the last where you made change in cod
 cntrl+shift+F7          highLight select method  ,  shift+F3 &     ,    F3             navigate into highLight method
 cntrl+E       popup recently file visited it
 F2/Shift+F2           to jump between highlighted syntax errors
-Ctrl+Alt+Up/Ctrl+Alt+Down        to jump between ompiler error messages or search operation results
+Ctrl+Alt+Up/Ctrl+Alt+Down        to jump between compiler error messages or search operation results
 Ctrl+J               to complete any valid Live Template abbreviation if you don't remember
-Ctrl+Shift+V shortcut to choose and insert recent clipboard contents into the text
+Ctrl+Shift+V       shortcut to choose and insert recent clipboard contents into the text
 Ctrl+H  کل اینهریتهای بالادست یک کلاس
 //in debug=>  alt+click       evaluate the value
 Ctrl+Shift+Enter    to complete a current statement such as if, do-while, try-catch, return (or a method call) into a syntactically correct construct

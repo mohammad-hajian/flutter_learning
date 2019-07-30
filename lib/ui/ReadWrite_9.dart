@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ReadWrite extends StatefulWidget {
   final title;
@@ -13,6 +14,7 @@ class ReadWrite extends StatefulWidget {
 
 class _ReadWriteState extends State<ReadWrite> {
   var _enterFieldController = TextEditingController();
+  String _savedDataField;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class _ReadWriteState extends State<ReadWrite> {
                       Padding(
                         padding: EdgeInsets.all(10.5),
                       ),
-                      Text('save text'),
+                      Text('save data'),
                       Padding(
                         padding: EdgeInsets.all(10.5),
                       ),
@@ -70,7 +72,30 @@ class _ReadWriteState extends State<ReadWrite> {
       ),
     );
   }
+
+  //region TODO shared_preferences
+//لود در اول برنامه به صورت خودکار انجام می‌شود و باید خروجی آن را قرار دهیم. و ذخیره هم باید متود آن قرار داده شود
+  @override
+  void initState() {
+    _loadSavedData();
+  }
+  void _loadSavedData() async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      if (preferences.getString('data').isNotEmpty && preferences.getString('data') != null) {
+        _savedDataField = preferences.getString('data');
+      } else {
+        _savedDataField = 'empty data';
+      }
+    });
+  }
+  _saveData(String message) async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('data', message); //{ Key: value }
+  }
+//endregion
 }
+
 
 Future<String> get _localPath async {
   final directory = await getApplicationDocumentsDirectory();

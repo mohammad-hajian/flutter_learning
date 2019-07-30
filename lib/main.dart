@@ -109,10 +109,6 @@ import 'ui/home_1.dart';
 
 //TODO TextFile_9
 void main() async{
-  String data = await readData();
-  if (data != null) {
-    print(data);
-  }
   final title = 'ReadWrite';
   runApp(new MaterialApp(
     title: title,
