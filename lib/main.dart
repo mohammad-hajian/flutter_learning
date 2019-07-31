@@ -6,11 +6,14 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app/ui/bmi_5.dart';
+import 'models/User.dart';
+import 'ui/databaseHome_10.dart';
 import 'ui/navigatePage_7.dart';
 import 'ui/weight-on-planet_4.dart';
 import 'package:flutter_app/ui/login_3.dart';
 import 'ui/make-it-rain_2.dart';
 import 'ui/home_1.dart';
+import 'utility/databaseHelper_10.dart';
 
 //void main() => runApp(new MaterialApp(
 //  title: "layouts",
@@ -42,7 +45,7 @@ import 'ui/home_1.dart';
 //  );
 //}
 
-//TODO form field & validation different_Column_ListView_3
+//TODO form field & validation & (Column VS ListView) & setState_good _3
 //void main(){
 //      final appTitle = "login";
 //  runApp(
@@ -76,7 +79,7 @@ import 'ui/home_1.dart';
 //  );
 //}
 
-//TODO json parsing & List view_6
+//TODO json parsing & List view &show alert_6
 //void main() async {
 //  Map quakes = await getQuakes();
 //  int quakesLength = quakes['features'].length;
@@ -108,10 +111,49 @@ import 'ui/home_1.dart';
 //}
 
 //TODO TextFile_9
+//void main() async{
+//  final title = 'ReadWrite';
+//  runApp(new MaterialApp(
+//    title: title,
+//    home: new ReadWrite(title),
+//  ));
+//}
+
+//TODO Database
 void main() async{
-  final title = 'ReadWrite';
+//
+  DatabaseHelper db = DatabaseHelper();
+  //get all users
+  users =await db.getAllUsers();
+//  for (int i=0;i<users.length;i++) {
+//    print('name: ${User.map(users[i]).username} & pass: ${User.map(users[i]).password} & userId: ${User.map(users[i]).id}');
+//  }
+  //add user
+//  int userSave = await db.saveUser(User("end user :D", 'no enymore'));
+//  print('userSaveCode: $userSave');
+//  //show count
+//  int count = await db.getCount();
+//  print('count: $count');
+//  //get one user
+//  User user = await db.getUser(count);
+//  print('last user: userId: ${user.id} & name: ${user.username} & pass: ${user.password}');
+//  //delete
+//  int delete = await db.deleteUser(count);
+//  print('delete: $delete');
+////update first user
+//  User firstUser = User./*map*/fromMap(//فرقی نمیکنه
+//      {
+//        'username': 'first',
+//        "password": "one",
+//        "id": 1
+//      });
+//  int update = await db.updateUser(firstUser);
+//  print('update: $update');
+
+
+  final title = 'Database';
   runApp(new MaterialApp(
     title: title,
-    home: new ReadWrite(title),
+    home: DatabaseHome(title),
   ));
 }
