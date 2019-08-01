@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/User.dart';
+import 'package:flutter_app/models/User_10.dart';
 import 'package:flutter_app/utility/databaseHelper_10.dart';
 
 List users =[];
@@ -67,30 +67,5 @@ class _DatabaseHomeState extends State<DatabaseHome> {
 //          ],
 //        )
     );
-  }
-
-  DatabaseHelper db = DatabaseHelper();
-  void saveData() async {
-   var res = await db.saveUser(User("${_usernameFieldController.text}", '${_passwordFieldController.text}'));
-   String message = 'ذخیره نشد';
-   if (res.isOdd || res.isEven) {
-     message = 'با موفقیت ذخیره شد';
-   }
-       var alert = new AlertDialog(
-         title: Text('وضعیت'),
-         content: Text(message),
-         actions: <Widget>[
-           FlatButton.icon(
-               onPressed: (){Navigator.pop(context);} ,
-               icon: Icon(Icons.check),
-               label: Text("OK")
-           )
-         ],
-       );
-       showDialog(context: context, builder: (context){return alert;});
-         users =await db.getAllUsers();
-       setState(() {
-         users = users;
-       });
   }
 }

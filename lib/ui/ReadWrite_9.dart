@@ -77,6 +77,7 @@ class _ReadWriteState extends State<ReadWrite> {
 //لود در اول برنامه به صورت خودکار انجام می‌شود و باید خروجی آن را قرار دهیم. و ذخیره هم باید متود آن قرار داده شود
   @override
   void initState() {
+    super.initState();
     _loadSavedData();
   }
   void _loadSavedData() async{

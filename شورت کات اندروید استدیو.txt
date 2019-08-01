@@ -12,6 +12,7 @@ cntrl+B or Cntrl+click rooye matn        navigate to declaration
 shift+F6     rename item & reference
 cntrl+O      override of base class
 cntrol+I      implement of interface
+alt+ insert      generat contractor & ...
 middleMouse on tab or shift+click on tab         close tab
 typing on tree        quick search
 cntrl+alt+t       surround with
