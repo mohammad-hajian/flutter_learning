@@ -1,21 +1,25 @@
 import 'dart:convert';
-import 'package:flutter_app/ui/ReadWrite_9.dart';
-import 'package:flutter_app/ui/jsonParsing_6.dart';
-import 'package:flutter_app/ui/weather_8.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-import 'package:flutter_app/ui/bmi_5.dart';
-import 'models/User_10.dart';
-import 'ui/databaseHome_10.dart';
-import 'ui/navigatePage_7.dart';
-import 'ui/noToDo_11.dart';
-import 'ui/weight-on-planet_4.dart';
-import 'package:flutter_app/ui/login_3.dart';
-import 'ui/make-it-rain_2.dart';
 import 'ui/home_1.dart';
+import 'ui/make-it-rain_2.dart';
+import 'ui/login_3.dart';
+import 'ui/weight-on-planet_4.dart';
+import 'ui/bmi_5.dart';
+import 'ui/jsonParsing_6.dart';
+import 'ui/navigatePage_7.dart';
+import 'ui/weather_8.dart';
+import 'ui/ReadWrite_9.dart';
+import 'ui/databaseHome_10.dart';
+import 'models/User_10.dart';
 import 'utility/databaseHelper_10.dart';
+import 'ui/noToDoScreen_11.dart';
+import 'animation/counter_animation_12.dart';
 
+//region main_1
 //void main() => runApp(new MaterialApp(
 //  title: "layouts",
 //      home: new Home(),
@@ -35,8 +39,9 @@ import 'utility/databaseHelper_10.dart';
 //    home: new Home(title: title,),
 //  ));
 //}
+//endregion
 
-//TODO setState_2
+//region setState_2
 //void main(){
 //  runApp(
 //    new MaterialApp(
@@ -45,8 +50,9 @@ import 'utility/databaseHelper_10.dart';
 //    )
 //  );
 //}
+//endregion
 
-//TODO form field & validation & (Column VS ListView) & setState_good _3
+//region form field & validation & (Column VS ListView) & setState_good _3
 //void main(){
 //      final appTitle = "login";
 //  runApp(
@@ -56,8 +62,9 @@ import 'utility/databaseHelper_10.dart';
 //    )
 //  );
 //}
+//endregion
 
-//TODO radio_4
+//region radio_4
 //void main(){
 //      final appTitle = "WeightOnPlanet";
 //  runApp(
@@ -67,9 +74,9 @@ import 'utility/databaseHelper_10.dart';
 //    )
 //  );
 //}
+//endregion
 
-//TODO Text field_5
-
+//region Text field_5
 //void main(){
 //  final title = "BMI";
 //  runApp(
@@ -79,39 +86,47 @@ import 'utility/databaseHelper_10.dart';
 //    )
 //  );
 //}
+//endregion
 
-//TODO json parsing & List view &show alert_6
+//region json parsing & List view &show alert_6
 //void main() async {
+////  Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.contacts]);
+//  ServiceStatus serviceStatus = await PermissionHandler().checkServiceStatus(PermissionGroup.microphone);
+////  bool isOpened = await PermissionHandler().openAppSettings();
+////  bool isShown = await PermissionHandler().shouldShowRequestPermissionRationale(PermissionGroup.contacts);
 //  Map quakes = await getQuakes();
-//  int quakesLength = quakes['features'].length;
-//  for (int i=0; i<quakesLength; i++) {
-//    if ('${quakes['features'][i]['properties']['place']}'.contains("Iran")) {
-//      print(quakes['features'][i]['properties']['place']);
-//    }
-//  }
+////  int quakesLength = quakes['features'].length;
+////  for (int i=0; i<quakesLength; i++) {
+////    if ('${quakes['features'][i]['properties']['place']}'.contains("Iran")) {
+////      print(quakes['features'][i]['properties']['place']);
+////    }
+////  }
 //  runApp(new MaterialApp(
 //    title: 'Quakes',
 //    home: Quakes(quakes),
 //  ));
 //}
+//endregion
 
-//TODO navigae page_7
+//region navigate page_7
 //void main() {
 //  runApp(new MaterialApp(
 //    title: "page navigate",
 //    home: new FirstPage(),
 //  ));
 //}
+//endregion
 
-//TODO FutureBuilder_8
+//region FutureBuilder_8
 //void main() {
 //  runApp(new MaterialApp(
 //    title: "Weather",
 //    home: new Weather(),
 //  ));
 //}
+//endregion
 
-//TODO TextFile_9
+//region TextFile_9
 //void main() async{
 //  final title = 'ReadWrite';
 //  runApp(new MaterialApp(
@@ -119,8 +134,9 @@ import 'utility/databaseHelper_10.dart';
 //    home: new ReadWrite(title),
 //  ));
 //}
+//endregion
 
-//TODO Database
+//region Database_10
 //void main() async{
 //  DatabaseHelper db = DatabaseHelper();
 //  //get all users
@@ -156,13 +172,38 @@ import 'utility/databaseHelper_10.dart';
 //    home: DatabaseHome(title),
 //  ));
 //}
+//endregion
 
-//TODO   pro setState & pro show dialog & flexible & pro listTile
+//region pro show dialog & flexible &  pro listTitle(classListTitle) & wrap & ModalBottomSheet & support fa-IR_11
 //توی اسکرین یازده : سه تا نکته خیلی مهم است. دو تا توی دیالوگ و یکی توی اول بادی
 void main() {
-  final title = 'NoToDo';
+  final title = 'دفترچه یادداشت';
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    localizationsDelegates: [
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+    ],
+    supportedLocales: [
+      Locale("fa", "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
+    ],
+    locale: Locale("fa", "IR") ,// OR Locale('ar', 'AE') OR Other RTL locales,
     title: title,
-    home: NoToDo(title),
+    home: NoToDoScreen(title),
   ));
 }
+//endregion
+
+//region animation_12
+//void main() {
+//  final title = 'Animation';
+//  runApp(MaterialApp(
+//    title: title,
+//    theme: ThemeData(
+//      primarySwatch: Colors.blue,
+////      primaryColor: Colors.red
+//    ),
+//    home: Scaffold(body:Center(child: CounterAnimator()))
+//  ));
+//}
+//endregion

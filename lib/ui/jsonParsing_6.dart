@@ -5,12 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart' as intl;
 
 class Quakes extends StatelessWidget {
-  Map quakes;
+  final Map quakes;
 
   Quakes(this.quakes);
 
   @override
   Widget build(BuildContext context) {
+    print(quakes);
     return Scaffold(
       appBar: AppBar(
         title: Text("Quakes"),

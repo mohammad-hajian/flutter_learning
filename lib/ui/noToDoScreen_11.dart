@@ -3,6 +3,8 @@ import 'package:flutter_app/models/noToDoItem_11.dart';
 import 'package:flutter_app/utility/datadaseClient_11.dart';
 
 class NoToDoScreen extends StatefulWidget {
+  final title;
+  NoToDoScreen(this.title);
   @override
   _NoToDoScreenState createState() => _NoToDoScreenState();
 }
@@ -22,7 +24,13 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[800],
-      body: Column(
+        appBar: AppBar(
+        title: Text('${widget.title}'),
+    backgroundColor: Colors.deepOrange[300],
+    ),
+    body: Container(
+      child:
+      Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Flexible(
@@ -31,20 +39,21 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
 //                  reverse: true, // default is false
                   itemBuilder: (_, int index) {
                     return Card(
-                      color: Colors.grey[400],
+                      color: Colors.lightBlueAccent,
                       child: ListTile(
-                        leading: CircleAvatar(child: Text('${_itemList[index].id}'),),
+                        leading: CircleAvatar(
+                          child: Text('${_itemList[index].id}'),
+                        ),
                         title: _itemList[index],
                         onLongPress: () =>
                             _updateNoToDoDialog(_itemList[index].id, index),
                         trailing: new Listener(
-                          key: Key(_itemList[index].itemName),
+                          key: Key(_itemList[index].itemName),           //اینو نمیدونم چیه
                           child: Icon(
                             Icons.remove_circle,
                             color: Colors.redAccent,
                           ),
-                          onPointerDown: (pointerEvent) =>
-                              _deleteNoDoTo(_itemList[index].id, index),
+                          onPointerDown: (pointerEvent) => _settingModalBottomSheet(context, _itemList[index].id, index)
 //                          onPointerUp: (pointerEvent)=>null,
                         ),
                       ),
@@ -52,16 +61,21 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
                   }))
         ],
       ),
+    ),
+
+    floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _saveNoToDoDialog(),
+        onPressed: () =>_saveNoToDoDialog(),
         backgroundColor: Colors.blueAccent,
-        tooltip: 'add item',
+        tooltip: 'اصافه کردن',
         child: ListTile(
           title: Icon(Icons.add),
         ),
       ),
     );
   }
+
+
 
   _handleSubmitSave(String text) async {
     NoToDoItem noToDoItem = new NoToDoItem(
@@ -85,7 +99,6 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
   }
 
   _deleteNoDoTo(int id, int index) async {
-    debugPrint('deleted Item : $index');
     await db.deleteItem(id);
     setState(() {
       _itemList.removeAt(index);
@@ -94,16 +107,15 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
 
   void _handleSubmitUpdate(NoToDoItem updateToDo, int index) async {
     await db.updateItem(updateToDo);
-      print(_itemList.length);
-      _itemList.removeRange(0, _itemList.length );
-      _readNoToDoList();
+    _itemList.removeRange(0, _itemList.length);
+    _readNoToDoList();
     _textEditingController.clear();
     Navigator.pop(context);
   }
 
   _saveNoToDoDialog() {
     var alert = new AlertDialog(
-      title: Text('add item'),
+      title: Text('اضافه کردن'),
       content: Row(
         //اینجا فقط row , column قرار میگیرند چون میخواهیم این فضا اندازه غیر ثابت داشته باشد
         children: <Widget>[
@@ -113,8 +125,8 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
               controller: _textEditingController,
               autofocus: true,
               decoration: InputDecoration(
-                  labelText: 'Item',
-                  hintText: 'hello how are you?',
+                  labelText: 'نام',
+                  hintText: 'کتاب',
                   icon: Icon(Icons.note_add)),
             ),
           ),
@@ -123,15 +135,15 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
       actions: <Widget>[
         FlatButton(
           onPressed: () {
-            _handleSubmitSave(_textEditingController.text);
+            Navigator.pop(context);
           },
-          child: Text('Save'),
+          child: Text('لغو'),
         ),
         FlatButton(
           onPressed: () {
-            Navigator.pop(context);
+            _handleSubmitSave(_textEditingController.text);
           },
-          child: Text('Cancel'),
+          child: Text('ذخیره'),
         ),
       ],
     );
@@ -144,7 +156,7 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
 
   _updateNoToDoDialog(int id, int index) {
     var alert = new AlertDialog(
-      title: Text('update item'),
+      title: Text('تغییر'),
       content: Row(
         //اینجا فقط row , column قرار میگیرند چون میخواهیم این فضا اندازه غیر ثابت داشته باشد
         children: <Widget>[
@@ -154,14 +166,20 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
               controller: _textEditingController,
               autofocus: true,
               decoration: InputDecoration(
-                  labelText: 'Item',
-                  hintText: 'hello how are you?',
+                  labelText: 'نام',
+                  hintText: 'دفتر',
                   icon: Icon(Icons.update)),
             ),
           ),
         ],
       ),
       actions: <Widget>[
+        FlatButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('لغو'),
+        ),
         FlatButton(
           onPressed: () {
             NoToDoItem updateToDo = NoToDoItem.update(
@@ -172,12 +190,6 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
           },
           child: Text('Update'),
         ),
-        FlatButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Cancel'),
-        ),
       ],
     );
     showDialog(
@@ -186,4 +198,31 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
           return alert;
         });
   }
+
+  void _settingModalBottomSheet(context,int id, int index) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              alignment: WrapAlignment.center,
+//              spacing: 10,
+//              runSpacing: 100,
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.delete),
+                    title: new Text('حذف'),
+                    onTap: ()  {_deleteNoDoTo(id, index); Navigator.pop(context);}
+                ),
+                new ListTile(
+                  leading: new Icon(Icons.cancel),
+                  title: new Text('لغو'),
+                  onTap: () => Navigator.pop(context),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
 }
