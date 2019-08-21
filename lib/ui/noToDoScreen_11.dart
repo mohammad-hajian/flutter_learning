@@ -4,7 +4,9 @@ import 'package:flutter_app/utility/datadaseClient_11.dart';
 
 class NoToDoScreen extends StatefulWidget {
   final title;
+
   NoToDoScreen(this.title);
+
   @override
   _NoToDoScreenState createState() => _NoToDoScreenState();
 }
@@ -24,48 +26,50 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[800],
-        appBar: AppBar(
+      appBar: AppBar(
         title: Text('${widget.title}'),
-    backgroundColor: Colors.deepOrange[300],
-    ),
-    body: Container(
-      child:
-      Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Flexible(
-              child: ListView.builder(
-                  itemCount: _itemList.length,
-//                  reverse: true, // default is false
-                  itemBuilder: (_, int index) {
-                    return Card(
-                      color: Colors.lightBlueAccent,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          child: Text('${_itemList[index].id}'),
-                        ),
-                        title: _itemList[index],
-                        onLongPress: () =>
-                            _updateNoToDoDialog(_itemList[index].id, index),
-                        trailing: new Listener(
-                          key: Key(_itemList[index].itemName),           //اینو نمیدونم چیه
-                          child: Icon(
-                            Icons.remove_circle,
-                            color: Colors.redAccent,
-                          ),
-                          onPointerDown: (pointerEvent) => _settingModalBottomSheet(context, _itemList[index].id, index)
-//                          onPointerUp: (pointerEvent)=>null,
-                        ),
-                      ),
-                    );
-                  }))
-        ],
+        centerTitle: true,
+        backgroundColor: Colors.cyan,
       ),
-    ),
-
-    floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Flexible(
+                child: ListView.builder(
+                    itemCount: _itemList.length,
+//                  reverse: true, // default is false
+                    itemBuilder: (_, int index) {
+                      return Card(
+                        color: Colors.lightBlueAccent,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            child: Text('${_itemList[index].id}'),
+                          ),
+                          title: _itemList[index],
+                          onLongPress: () =>
+                              _updateNoToDoDialog(_itemList[index], index),
+                          trailing: new Listener(
+                              key: Key(_itemList[index].itemName),
+                              //اینو نمیدونم چیه
+                              child: Icon(
+                                Icons.remove_circle,
+                                color: Colors.redAccent,
+                              ),
+                              onPointerDown: (pointerEvent) =>
+                                  _settingModalBottomSheet(
+                                      context, _itemList[index].id, index)
+//                          onPointerUp: (pointerEvent)=>null,
+                              ),
+                        ),
+                      );
+                    }))
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>_saveNoToDoDialog(),
+        onPressed: () => _saveNoToDoDialog(),
         backgroundColor: Colors.blueAccent,
         tooltip: 'اصافه کردن',
         child: ListTile(
@@ -74,8 +78,6 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
       ),
     );
   }
-
-
 
   _handleSubmitSave(String text) async {
     NoToDoItem noToDoItem = new NoToDoItem(
@@ -154,7 +156,8 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
         });
   }
 
-  _updateNoToDoDialog(int id, int index) {
+  _updateNoToDoDialog(NoToDoItem item, int index) {
+    _textEditingController.text = item.itemName;
     var alert = new AlertDialog(
       title: Text('تغییر'),
       content: Row(
@@ -166,9 +169,7 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
               controller: _textEditingController,
               autofocus: true,
               decoration: InputDecoration(
-                  labelText: 'نام',
-                  hintText: 'دفتر',
-                  icon: Icon(Icons.update)),
+                  labelText: 'نام', hintText: 'دفتر', icon: Icon(Icons.update)),
             ),
           ),
         ],
@@ -185,10 +186,10 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
             NoToDoItem updateToDo = NoToDoItem.update(
                 _textEditingController.text,
                 DateTime.now().toIso8601String(),
-                id);
+                item.id);
             _handleSubmitUpdate(updateToDo, index);
           },
-          child: Text('Update'),
+          child: Text('تغییر'),
         ),
       ],
     );
@@ -199,7 +200,7 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
         });
   }
 
-  void _settingModalBottomSheet(context,int id, int index) {
+  void _settingModalBottomSheet(context, int id, int index) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
@@ -212,8 +213,10 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
                 new ListTile(
                     leading: new Icon(Icons.delete),
                     title: new Text('حذف'),
-                    onTap: ()  {_deleteNoDoTo(id, index); Navigator.pop(context);}
-                ),
+                    onTap: () {
+                      _deleteNoDoTo(id, index);
+                      Navigator.pop(context);
+                    }),
                 new ListTile(
                   leading: new Icon(Icons.cancel),
                   title: new Text('لغو'),
@@ -224,5 +227,4 @@ class _NoToDoScreenState extends State<NoToDoScreen> {
           );
         });
   }
-
 }

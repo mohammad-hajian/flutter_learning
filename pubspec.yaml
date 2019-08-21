@@ -55,6 +55,13 @@ flutter:
     - images/light_rain.png
     - images/umbrella.png
     - images/white_snow.png
+    - images/company-app/android_bootcamp.png
+    - images/company-app/android_portfolio.png
+    - images/company-app/bawp_creator.png
+    - images/company-app/java9_course.png
+    - images/company-app/java_design-pats.png
+    - images/company-app/kotlin.png
+    - images/company-app/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

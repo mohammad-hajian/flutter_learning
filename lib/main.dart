@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'animation/company-animator_13.dart';
+import 'ui/company-details-page_13.dart';
 import 'ui/home_1.dart';
 import 'ui/make-it-rain_2.dart';
 import 'ui/login_3.dart';
@@ -174,24 +176,24 @@ import 'animation/counter_animation_12.dart';
 //}
 //endregion
 
-//region pro show dialog & flexible &  pro listTitle(classListTitle) & wrap & ModalBottomSheet & support fa-IR_11
+//region pro show dialog & flexible &  pro listTitle(classListTitle) & wrap & ListViewBuilder & ModalBottomSheet & support fa-IR_11
 //توی اسکرین یازده : سه تا نکته خیلی مهم است. دو تا توی دیالوگ و یکی توی اول بادی
-void main() {
-  final title = 'دفترچه یادداشت';
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    localizationsDelegates: [
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-    ],
-    supportedLocales: [
-      Locale("fa", "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
-    ],
-    locale: Locale("fa", "IR") ,// OR Locale('ar', 'AE') OR Other RTL locales,
-    title: title,
-    home: NoToDoScreen(title),
-  ));
-}
+//void main() {
+//  final title = 'دفترچه یادداشت';
+//  runApp(MaterialApp(
+//    debugShowCheckedModeBanner: false,
+//    localizationsDelegates: [
+//      GlobalMaterialLocalizations.delegate,
+//      GlobalWidgetsLocalizations.delegate,
+//    ],
+//    supportedLocales: [
+//      Locale("fa", "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
+//    ],
+//    locale: Locale("fa", "IR") ,// OR Locale('ar', 'AE') OR Other RTL locales,
+//    title: title,
+//    home: NoToDoScreen(title),
+//  ));
+//}
 //endregion
 
 //region animation_12
@@ -206,4 +208,18 @@ void main() {
 //    home: Scaffold(body:Center(child: CounterAnimator()))
 //  ));
 //}
+//endregion
+
+//region pro-animation_13
+void main() {
+  final title = 'Animation';
+  runApp(MaterialApp(
+    title: title,
+    theme: ThemeData(
+      primarySwatch: Colors.blue,
+//      primaryColor: Colors.red
+    ),
+    home: CompanyAnimator()
+  ));
+}
 //endregion

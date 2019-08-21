@@ -17,7 +17,7 @@ class _CounterAnimatorState extends State<CounterAnimator> with SingleTickerProv
   void initState() {
     super.initState();
 
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 2));
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: 2));//مدت انیمیشن
     animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn)
 //  animation = Tween(begin: 0.0, end: 20.0).animate(_controller)
     ..addListener((){
