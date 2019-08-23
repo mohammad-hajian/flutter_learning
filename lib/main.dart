@@ -9,6 +9,7 @@ import 'ui/company-details-page_13.dart';
 import 'ui/home_1.dart';
 import 'ui/make-it-rain_2.dart';
 import 'ui/login_3.dart';
+import 'ui/master_detail_Screen_14.dart';
 import 'ui/weight-on-planet_4.dart';
 import 'ui/bmi_5.dart';
 import 'ui/jsonParsing_6.dart';
@@ -210,16 +211,29 @@ import 'animation/counter_animation_12.dart';
 //}
 //endregion
 
-//region pro-animation_13
+//region ClipRRect & Positioned & Material & pro-animation_13
+//void main() {
+//  final title = 'Animation';
+//  runApp(MaterialApp(
+//    title: title,
+//    theme: ThemeData(
+//      primarySwatch: Colors.blue,
+////      primaryColor: Colors.red
+//    ),
+//    home: CompanyAnimator()
+//  ));
+//}
+//endregion
+
+//region orientation & ValueChangedInListTitle_14
 void main() {
-  final title = 'Animation';
+  final title = 'grid';
   runApp(MaterialApp(
     title: title,
     theme: ThemeData(
-      primarySwatch: Colors.blue,
-//      primaryColor: Colors.red
+      primarySwatch: Colors.amber,
     ),
-    home: CompanyAnimator()
+    home: MasterDetailScreen(),
   ));
 }
 //endregion

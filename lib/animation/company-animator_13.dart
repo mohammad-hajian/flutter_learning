@@ -12,7 +12,7 @@ class _CompanyAnimatorState extends State<CompanyAnimator> with SingleTickerProv
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 2001));
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 3000));
     super.initState();
     _controller.forward();
   }
