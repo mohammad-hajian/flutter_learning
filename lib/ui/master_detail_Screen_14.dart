@@ -21,7 +21,6 @@ class _MasterDetailScreenState extends State<MasterDetailScreen> {
        })
       );
     }
-      
     );
   }
 

@@ -28,6 +28,11 @@ Ctrl+Shift+V       shortcut to choose and insert recent clipboard contents into 
 Ctrl+H  کل اینهریتهای بالادست یک کلاس
 //in debug=>  alt+click       evaluate the value
 Ctrl+Shift+Enter    to complete a current statement such as if, do-while, try-catch, return (or a method call) into a syntactically correct construct
-Ctrl+Shift+I    quickly review definition or content ین حدودا داخلشو میبینی
+Ctrl+Shift+I    quickly review definition or content ینی حدودا داخلشو میبینی
+
+
+For apk (Android) you need to run the command : flutter build apk --release
+For ipa (iOS) you need to run the command : flutter build ios --release
+ 
 
  

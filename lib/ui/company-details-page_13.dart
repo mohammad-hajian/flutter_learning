@@ -4,7 +4,7 @@ import 'package:flutter_app/models/company-course-repodata_13.dart';
 import 'package:flutter_app/animation/company_details_intro-animation_13.dart';
 import 'dart:ui' as ui;
 
-import 'package:flutter_app/ui/courser-card_13.dart';
+import 'package:flutter_app/ui/course-card_13.dart';
 
 class CompanyDetailsPage extends StatelessWidget {
   final Company company;
