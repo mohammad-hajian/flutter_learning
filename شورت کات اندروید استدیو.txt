@@ -34,5 +34,6 @@ Ctrl+Shift+I    quickly review definition or content ینی حدودا داخل�
 For apk (Android) you need to run the command : flutter build apk --release
 For ipa (iOS) you need to run the command : flutter build ios --release
  
-
+For json convert   //flutter pub run build_runner build
+For json convert   //flutter pub run build_runner watch
  
